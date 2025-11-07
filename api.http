@@ -1,0 +1,17 @@
+###
+POST http://localhost:8080/api/v1/produtos
+Content-Type: application/json
+
+{
+    "nome": "Produto1",
+    "preco": 25.5
+}
+
+###
+GET http://localhost:8080/api/v1/produtos
+
+###
+GET http://localhost:8080/api/v1/produtos/1
+
+###
+DELETE http://localhost:8080/api/v1/produtos/1
