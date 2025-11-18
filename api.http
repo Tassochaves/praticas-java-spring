@@ -1,5 +1,7 @@
+@baseUrl = http://localhost:8080
+
 ###
-POST http://localhost:8080/api/v1/produtos
+POST {{baseUrl}}/api/v1/produtos
 Content-Type: application/json
 
 {
@@ -8,10 +10,31 @@ Content-Type: application/json
 }
 
 ###
-GET http://localhost:8080/api/v1/produtos
+POST {{baseUrl}}/auth/register
+Content-Type: application/json
+
+{
+    "username": "username2",
+    "password": "12345678"
+}
 
 ###
-GET http://localhost:8080/api/v1/produtos/1
+# @name login
+POST {{baseUrl}}/auth/login
+Content-Type: application/json
+
+{
+    "username": "username2",
+    "password": "$2a$10$grhNofVA.fHk6XfU4qdfSuH8f2/7yWH0gbyVIc1eyh/NIgl0Bqehe"
+}
 
 ###
-DELETE http://localhost:8080/api/v1/produtos/3
+@authToken = {{login.response.body.token}}
+GET {{baseUrl}}/api/v1/produtos
+Authorization: Bearer {{authToken}}
+
+###
+GET {{baseUrl}}/api/v1/produtos/1
+
+###
+DELETE {{baseUrl}}/api/v1/produtos/3
